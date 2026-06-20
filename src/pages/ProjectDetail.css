@@ -23,6 +23,11 @@
   color: var(--terra);
 }
 
+/* горизонтальная навигация по проектам — только на телефоне */
+.detail__nav-strip {
+  display: none;
+}
+
 .detail__head {
   max-width: min(760px, 100%);
 }
@@ -213,11 +218,71 @@
 }
 
 @media (max-width: 960px) {
+  .detail {
+    padding-top: 96px;
+  }
+
+  .detail__nav-strip {
+    display: block;
+    margin: 0 -20px 20px;
+  }
+  .detail__nav-strip-list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 20px;
+    padding: 0 20px 4px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .detail__nav-strip-list::-webkit-scrollbar {
+    display: none;
+  }
+  .detail__nav-strip-item {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    scroll-snap-align: start;
+    padding: 6px 0;
+    border: none;
+    background: none;
+    white-space: nowrap;
+    transition: color 0.25s var(--ease);
+  }
+  .detail__nav-strip-name {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--ink-faint);
+    transition: color 0.25s var(--ease);
+  }
+  .detail__nav-strip-dot {
+    flex-shrink: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: transparent;
+    aspect-ratio: 1;
+  }
+  .detail__nav-strip-item.is-active {
+    background: none;
+  }
+  .detail__nav-strip-item.is-active .detail__nav-strip-name {
+    color: var(--accent);
+  }
+  .detail__nav-strip-item.is-active .detail__nav-strip-dot {
+    background: var(--accent);
+  }
+
   .detail__layout {
     grid-template-columns: 1fr;
     gap: 0;
   }
-  /* на узких экранах навигацию прячем — снизу остаётся ссылка «следующий проект» */
+  /* на узких экранах навигацию прячем — сверху горизонтальная лента */
   .detail__nav {
     display: none;
   }

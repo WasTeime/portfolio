@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { projects } from '../data/content.js'
@@ -10,10 +10,18 @@ const statusLabel = { live: 'live', wip: 'в разработке', done: 'го�
 export default function ProjectDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
+  const stripRef = useRef(null)
   const project = projects.find((p) => p.id === id)
 
   useEffect(() => {
     window.scrollTo(0, 0)
+  }, [id])
+
+  useEffect(() => {
+    const strip = stripRef.current
+    if (!strip) return
+    const active = strip.querySelector('.detail__nav-strip-item.is-active')
+    active?.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'auto' })
   }, [id])
 
   if (!project) {
@@ -37,6 +45,29 @@ export default function ProjectDetail() {
       transition={{ duration: 0.5 }}
     >
       <div className="container">
+        {/* на телефоне — горизонтальная навигация (на ПК та же роль у боковой колонки) */}
+        <nav className="detail__nav-strip" aria-label="Все проекты">
+          <ul className="detail__nav-strip-list" ref={stripRef}>
+            {projects.map((p) => {
+              const active = p.id === id
+              return (
+                <li key={p.id}>
+                  <Link
+                    to={`/project/${p.id}`}
+                    className={`detail__nav-strip-item ${active ? 'is-active' : ''}`}
+                    data-status={p.status}
+                    style={{ '--accent': p.accent }}
+                    aria-current={active ? 'page' : undefined}
+                  >
+                    <span className="detail__nav-strip-dot" />
+                    <span className="detail__nav-strip-name">{p.name}</span>
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        </nav>
+
         <button className="detail__back" onClick={() => navigate('/#projects')}>
           ← к карте проектов
         </button>

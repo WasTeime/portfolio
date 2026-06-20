@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { about } from '../data/content.js'
+import { asset } from '../lib/asset.js'
 import './About.css'
 
 const ease = [0.22, 1, 0.36, 1]
@@ -8,7 +9,7 @@ export default function About() {
   return (
     <section id="about" className="section about">
       {/* бледный рисованный фон — стройка продукта */}
-      <img className="about__bg" src="/base.jpg" alt="" aria-hidden draggable="false" />
+      <img className="about__bg" src={asset('base.jpg')} alt="" aria-hidden draggable="false" />
 
       <div className="container about__inner">
         <div className="about__text">
@@ -48,7 +49,7 @@ export default function About() {
               whileHover={{ rotate: 0, y: -6 }}
             >
               <div className="value-card__img">
-                <img src={`/${c.id}.jpg`} alt={c.title} draggable="false" />
+                <img src={asset(`${c.id}.jpg`)} alt={c.title} draggable="false" />
               </div>
               <div className="value-card__strip">
                 <div className="value-card__title display">{c.title}</div>

@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { profile } from '../data/content.js'
 import SocialIcon from './SocialIcon.jsx'
 import { showToast } from '../lib/toast.js'
+import { asset } from '../lib/asset.js'
 import './Contact.css'
 
 const ease = [0.22, 1, 0.36, 1]
@@ -58,7 +59,7 @@ export default function Contact() {
         {/* без motion-обёртки: анимация opacity/scale изолирует слой и ломает
             mix-blend-mode на ~1с (гифка мелькает белым). Домик и так анимирован. */}
         <div className="contact__house">
-          <img src="/footer_house.gif" alt="Строим продукт" draggable="false" />
+          <img src={asset('footer_house.gif')} alt="Строим продукт" draggable="false" />
         </div>
       </div>
     </section>

@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { profile } from '../data/content.js'
 import SocialIcon from './SocialIcon.jsx'
 import { showToast } from '../lib/toast.js'
+import { asset } from '../lib/asset.js'
 import './Hero.css'
 
 const ease = [0.22, 1, 0.36, 1]
@@ -29,7 +30,7 @@ export default function Hero() {
           >
             <div className="hero__portrait-frame">
             <img
-              src="/portrait.png"
+              src={asset('portrait.png')}
               alt={profile.name}
               onError={(e) => {
                 e.currentTarget.style.display = 'none'

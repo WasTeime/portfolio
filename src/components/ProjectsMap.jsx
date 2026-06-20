@@ -6,6 +6,7 @@ import ProjectPin from './ProjectPin.jsx'
 import ProjectCard from './ProjectCard.jsx'
 import ProjectsList from './ProjectsList.jsx'
 import useIsMobile from '../hooks/useIsMobile.js'
+import { asset } from '../lib/asset.js'
 import './ProjectsMap.css'
 
 const ease = [0.22, 1, 0.36, 1]
@@ -93,7 +94,7 @@ export default function ProjectsMap() {
           >
             <img
               className="map-img"
-              src="/Map.png"
+              src={asset('Map.png')}
               alt="Карта проектов"
               onError={(e) => e.currentTarget.parentElement.classList.add('map-stage--noimg')}
             />

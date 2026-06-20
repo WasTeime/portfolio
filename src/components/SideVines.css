@@ -18,13 +18,11 @@
 
 .vine--left {
   left: 0;
-  background-image: url(/liana_left.png);
   animation: vine-sway-l 7s ease-in-out infinite;
   transform-origin: top left;
 }
 .vine--right {
   right: 0;
-  background-image: url(/liana_right.png);
   animation: vine-sway-r 7s ease-in-out infinite;
   transform-origin: top right;
 }

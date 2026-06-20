@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { asset } from '../lib/asset.js'
 
 // Облака, плывущие над картой. Берём 4 облака из спрайт-листа clouds.png (сетка 2×2).
 // quad: [x%, y%] позиция квадранта при background-size: 200% 200%.
@@ -25,7 +26,7 @@ export default function Clouds() {
             top: c.top,
             width: `${c.width}px`,
             opacity: c.opacity,
-            backgroundImage: 'url(/clouds.png)',
+            backgroundImage: `url(${asset('clouds.png')})`,
             backgroundPosition: `${c.quad[0]}% ${c.quad[1]}%`,
           }}
           initial={{ x: '-25%' }}

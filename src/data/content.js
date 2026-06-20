@@ -4,6 +4,8 @@
 //  Плейсхолдеры вида «<...>» — подставить реальные названия.
 // ─────────────────────────────────────────────────────────────
 
+import { asset } from '../lib/asset.js'
+
 export const profile = {
   greeting: 'Привет',
   name: 'Михаил',
@@ -50,7 +52,7 @@ export const projects = [
     status: 'live',
     role: 'PM · Solo build',
     accent: '#c8693e',
-    house: '/house-tower.png',
+    house: asset('house-tower.png'),
     pin: { x: 46, y: 36 }, // центральная полянка
     focus: { scale: 4.5 },
     stack: ['Android Native (Kotlin)', 'LLM API', 'Промпт-инжиниринг', 'Figma'],
@@ -73,7 +75,7 @@ export const projects = [
     status: 'wip',
     role: 'Solo build',
     accent: '#c8693e',
-    house: '/house-manor.png',
+    house: asset('house-manor.png'),
     pin: { x: 67, y: 20 }, // полянка справа вверху
     focus: { scale: 4.5 },
     stack: ['Python', 'aiogram 3', 'ChromaDB', 'ONNX', 'OpenRouter API', 'Docker'],
@@ -96,7 +98,7 @@ export const projects = [
     status: 'done',
     role: 'ML / Аналитика',
     accent: '#c8693e',
-    house: '/house-farm.png',
+    house: asset('house-farm.png'),
     pin: { x: 29, y: 90 }, // полянка слева внизу
     focus: { scale: 4.5 },
     stack: ['Python', 'pandas', 'scikit-learn', 'openpyxl'],
@@ -119,7 +121,7 @@ export const projects = [
     status: 'done',
     role: 'Python Developer (стажировка)',
     accent: '#c8693e',
-    house: '/house-cottage.png',
+    house: asset('house-cottage.png'),
     pin: { x: 86.5, y: 76 }, // полянка справа внизу
     focus: { scale: 4.5 },
     stack: ['Python', 'LLM (GPT-4o mini)', 'OpenRouter', 'Rocket.Chat', 'SMTP', 'Docker'],
@@ -141,7 +143,7 @@ export const projects = [
     status: 'done',
     role: 'Solo build',
     accent: '#c8693e',
-    house: '/house-observatory.png',
+    house: asset('house-observatory.png'),
     pin: { x: 10, y: 37 },
     focus: { scale: 4.5 },
     stack: [

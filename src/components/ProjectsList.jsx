@@ -31,7 +31,7 @@ export default function ProjectsList() {
             </div>
             <div className="proj-list__title display">{p.name}</div>
             <div className="proj-list__sub">{p.subtitle}</div>
-            <p className="proj-list__summary">{p.summary}</p>
+            <p className="proj-list__desc">{p.short || p.summary}</p>
             <div className="proj-list__stack">
               {p.stack.slice(0, 3).map((s) => (
                 <span key={s} className="proj-list__chip">{s}</span>

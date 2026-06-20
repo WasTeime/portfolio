@@ -186,11 +186,18 @@
     font-size: clamp(60px, 21vw, 120px);
   }
   .hero__portrait {
-    margin-top: -20px;
+    margin-top: -22px;
+    width: 100%;
   }
   .hero__portrait-frame {
-    height: clamp(300px, 64vw, 440px);
-    min-width: 0;
+    height: clamp(300px, 48vh, 400px);
+    width: min(100%, 360px);
+    min-width: 240px;
+  }
+  .hero__portrait-frame img {
+    max-width: none;
+    width: auto;
+    height: 100%;
   }
   .hero__intro {
     position: static;

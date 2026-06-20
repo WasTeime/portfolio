@@ -96,17 +96,21 @@
 }
 .proj-list__head {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 7px;
   font-size: 11px;
   color: var(--ink-faint);
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  line-height: 1.4;
 }
 .proj-list__dot {
+  flex-shrink: 0;
   width: 7px;
   height: 7px;
+  margin-top: 0.35em;
   border-radius: 50%;
+  aspect-ratio: 1;
 }
 .proj-list__dot[data-status='live'] { background: #c8693e; }
 .proj-list__dot[data-status='wip'] { background: #c8693e; }

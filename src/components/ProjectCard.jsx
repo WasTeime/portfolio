@@ -1,12 +1,14 @@
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
+import { useT } from '../i18n/lang.jsx'
 
-const statusLabel = { live: 'live', wip: 'в разработке', done: 'готово' }
 const ease = [0.22, 1, 0.36, 1]
 
 // Карточка-«сообщение» у домика. Для верхних точек показываем снизу, чтобы не обрезалась.
 export default function ProjectCard({ project }) {
   const navigate = useNavigate()
+  const { ui } = useT()
+  const statusLabel = ui.card.status
   const { pin, accent } = project
   const below = pin.y < 42
   return (
@@ -38,7 +40,7 @@ export default function ProjectCard({ project }) {
           <span key={s} className="proj-card__chip">{s}</span>
         ))}
       </div>
-      <div className="proj-card__more">подробнее →</div>
+      <div className="proj-card__more">{ui.card.more}</div>
       <span className="proj-card__tail" />
     </motion.div>
     </div>

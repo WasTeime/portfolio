@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion'
-import { about } from '../data/content.js'
+import { useT } from '../i18n/lang.jsx'
 import { asset } from '../lib/asset.js'
 import './About.css'
 
 const ease = [0.22, 1, 0.36, 1]
 
 export default function About() {
+  const { about, ui } = useT()
   return (
     <section id="about" className="section about">
       {/* бледный рисованный фон — стройка продукта */}
@@ -20,7 +21,7 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease }}
           >
-            Обо мне
+            {ui.about.eyebrow}
           </motion.span>
 
           {about.paragraphs.map((p, i) => (

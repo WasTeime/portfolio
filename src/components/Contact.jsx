@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { profile } from '../data/content.js'
+import { useT } from '../i18n/lang.jsx'
 import SocialIcon from './SocialIcon.jsx'
 import { showToast } from '../lib/toast.js'
 import { asset } from '../lib/asset.js'
@@ -8,6 +8,7 @@ import './Contact.css'
 const ease = [0.22, 1, 0.36, 1]
 
 export default function Contact() {
+  const { profile, ui } = useT()
   return (
     <section id="contact" className="section contact">
       <div className="container contact__inner">
@@ -17,11 +18,11 @@ export default function Contact() {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.8, ease }}
         >
-          <span className="eyebrow">Контакты</span>
+          <span className="eyebrow">{ui.contact.eyebrow}</span>
           <h2 className="contact__title display">
-            Построим продукт
+            {ui.contact.titleLine1}
             <br />
-            нужный людям
+            {ui.contact.titleLine2}
           </h2>
           <p className="contact__text">{profile.intro}</p>
 
@@ -32,7 +33,7 @@ export default function Contact() {
                 e.preventDefault()
                 const email = s.href.replace('mailto:', '')
                 navigator.clipboard?.writeText(email)
-                showToast('Почта скопирована')
+                showToast(ui.toast.mailCopied)
               }
               return (
                 <a
@@ -59,7 +60,7 @@ export default function Contact() {
         {/* без motion-обёртки: анимация opacity/scale изолирует слой и ломает
             mix-blend-mode на ~1с (гифка мелькает белым). Домик и так анимирован. */}
         <div className="contact__house">
-          <img src={asset('footer_house.gif')} alt="Строим продукт" draggable="false" />
+          <img src={asset('footer_house.gif')} alt={ui.contact.houseAlt} draggable="false" />
         </div>
       </div>
     </section>

@@ -1,19 +1,22 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { useLang, useT } from '../i18n/lang.jsx'
 import './Nav.css'
-
-const links = [
-  { label: 'Обо мне', href: '#about' },
-  { label: 'Проекты', href: '#projects' },
-  { label: 'Опыт', href: '#experience' },
-  { label: 'Контакты', href: '#contact' },
-]
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const { pathname } = useLocation()
+  const { lang, toggle } = useLang()
+  const t = useT()
   const onHome = pathname === '/'
+
+  const links = [
+    { label: t.ui.nav.about, href: '#about' },
+    { label: t.ui.nav.projects, href: '#projects' },
+    { label: t.ui.nav.experience, href: '#experience' },
+    { label: t.ui.nav.contact, href: '#contact' },
+  ]
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -40,9 +43,21 @@ export default function Nav() {
           </nav>
         ) : (
           <Link to="/" className="nav__link nav__link--back">
-            ← на главную
+            {t.ui.nav.back}
           </Link>
         )}
+
+        {/* переключатель языка у правого края */}
+        <button
+          className="nav__lang"
+          onClick={toggle}
+          aria-label={t.ui.nav.langTitle}
+          title={t.ui.nav.langTitle}
+        >
+          <span className={`nav__lang-opt ${lang === 'ru' ? 'is-on' : ''}`}>RU</span>
+          <span className="nav__lang-sep">/</span>
+          <span className={`nav__lang-opt ${lang === 'en' ? 'is-on' : ''}`}>EN</span>
+        </button>
       </div>
     </motion.header>
   )

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { profile } from '../data/content.js'
+import { useT } from '../i18n/lang.jsx'
 import SocialIcon from './SocialIcon.jsx'
 import { showToast } from '../lib/toast.js'
 import { asset } from '../lib/asset.js'
@@ -8,6 +8,8 @@ import './Hero.css'
 const ease = [0.22, 1, 0.36, 1]
 
 export default function Hero() {
+  const t = useT()
+  const { profile, ui } = t
   return (
     <section className="hero">
       <div className="hero__stage">
@@ -52,7 +54,7 @@ export default function Hero() {
           transition={{ duration: 0.9, delay: 0.5, ease }}
         >
           <p className="hero__name">
-            меня зовут
+            {ui.hero.namePrefix}
             <br />
             <span className="hero__name-em display">{profile.name}</span>
           </p>
@@ -71,7 +73,7 @@ export default function Hero() {
             const onMailClick = (e) => {
               e.preventDefault()
               navigator.clipboard?.writeText(s.href.replace('mailto:', ''))
-              showToast('Почта скопирована')
+              showToast(ui.toast.mailCopied)
             }
             return (
               <motion.a
@@ -100,7 +102,7 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.2 }}
       >
-        <span>листай</span>
+        <span>{ui.hero.scroll}</span>
         <motion.div
           className="hero__scroll-line"
           animate={{ scaleY: [0.3, 1, 0.3] }}

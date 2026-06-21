@@ -1,16 +1,17 @@
 import { useEffect, useRef } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { projects } from '../data/content.js'
+import { useT } from '../i18n/lang.jsx'
 import './ProjectDetail.css'
 
 const ease = [0.22, 1, 0.36, 1]
-const statusLabel = { live: 'live', wip: 'в разработке', done: 'готово' }
 
 export default function ProjectDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
   const stripRef = useRef(null)
+  const { projects, ui } = useT()
+  const statusLabel = ui.card.status
   const project = projects.find((p) => p.id === id)
 
   useEffect(() => {
@@ -27,8 +28,8 @@ export default function ProjectDetail() {
   if (!project) {
     return (
       <div className="detail detail--missing">
-        <p>Проект не найден.</p>
-        <Link to="/#projects" className="detail__back">← к карте</Link>
+        <p>{ui.detail.notFound}</p>
+        <Link to="/#projects" className="detail__back">{ui.detail.backShort}</Link>
       </div>
     )
   }
@@ -46,7 +47,7 @@ export default function ProjectDetail() {
     >
       <div className="container">
         {/* на телефоне — горизонтальная навигация (на ПК та же роль у боковой колонки) */}
-        <nav className="detail__nav-strip" aria-label="Все проекты">
+        <nav className="detail__nav-strip" aria-label={ui.detail.allProjects}>
           <ul className="detail__nav-strip-list" ref={stripRef}>
             {projects.map((p) => {
               const active = p.id === id
@@ -69,7 +70,7 @@ export default function ProjectDetail() {
         </nav>
 
         <button className="detail__back" onClick={() => navigate('/#projects')}>
-          ← к карте проектов
+          {ui.detail.back}
         </button>
 
         <div className="detail__layout">
@@ -101,7 +102,7 @@ export default function ProjectDetail() {
             </motion.div>
 
             <div className="detail__body">
-              <h2 className="detail__h2 display">Что сделано</h2>
+              <h2 className="detail__h2 display">{ui.detail.whatDone}</h2>
               <ul className="detail__highlights">
                 {project.highlights.map((h, i) => (
                   <motion.li
@@ -118,7 +119,7 @@ export default function ProjectDetail() {
             </div>
 
             <Link to={`/project/${next.id}`} className="detail__next">
-              <span className="detail__next-label">Следующий проект</span>
+              <span className="detail__next-label">{ui.detail.nextProject}</span>
               <span className="detail__next-name display">{next.name} →</span>
             </Link>
           </div>

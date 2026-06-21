@@ -1,13 +1,14 @@
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import { projects } from '../data/content.js'
+import { useT } from '../i18n/lang.jsx'
 
-const statusLabel = { live: 'live', wip: 'в разработке', done: 'готово' }
 const ease = [0.22, 1, 0.36, 1]
 
 // Список проектов для мобильных (вместо интерактивной карты)
 export default function ProjectsList() {
   const navigate = useNavigate()
+  const { projects, ui } = useT()
+  const statusLabel = ui.card.status
   return (
     <div className="proj-list">
       {projects.map((p, i) => (
@@ -37,7 +38,7 @@ export default function ProjectsList() {
                 <span key={s} className="proj-list__chip">{s}</span>
               ))}
             </div>
-            <span className="proj-list__more">подробнее →</span>
+            <span className="proj-list__more">{ui.card.more}</span>
           </div>
         </motion.button>
       ))}

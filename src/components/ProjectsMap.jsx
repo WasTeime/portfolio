@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { projects } from '../data/content.js'
+import { useT } from '../i18n/lang.jsx'
 import MapOverlay from './MapOverlay.jsx'
 import ProjectPin from './ProjectPin.jsx'
 import ProjectCard from './ProjectCard.jsx'
@@ -12,6 +12,7 @@ import './ProjectsMap.css'
 const ease = [0.22, 1, 0.36, 1]
 
 export default function ProjectsMap() {
+  const { projects, ui } = useT()
   const [selected, setSelected] = useState(null)
   const [focusPin, setFocusPin] = useState(null)
   const [view, setView] = useState('map') // 'map' | 'list' — выбор пользователя
@@ -37,23 +38,23 @@ export default function ProjectsMap() {
     <section id="projects" className="section projects">
       <div className="container projects__head">
         <div className="projects__head-text">
-          <span className="eyebrow">Проекты</span>
-          <h2 className="projects__title display">{showMap ? 'Карта работ' : 'Список проектов'}</h2>
+          <span className="eyebrow">{ui.projects.eyebrow}</span>
+          <h2 className="projects__title display">
+            {showMap ? ui.projects.mapTitle : ui.projects.listTitle}
+          </h2>
           <p className="projects__hint">
-            {showMap
-              ? 'Нажми на домик — карта приблизится и покажет карточку проекта'
-              : 'Нажми на проект, чтобы открыть подробное описание'}
+            {showMap ? ui.projects.hintMap : ui.projects.hintList}
           </p>
         </div>
 
         {/* переключатель карта / список (на телефоне скрыт — там только список) */}
         {!isMobile && (
-          <div className="projects__toggle" role="tablist" aria-label="Вид проектов">
+          <div className="projects__toggle" role="tablist" aria-label={ui.projects.viewLabel}>
             <button
               className={`projects__toggle-btn ${view === 'map' ? 'is-active' : ''}`}
               onClick={() => switchView('map')}
-              aria-label="Карта"
-              title="Карта"
+              aria-label={ui.projects.toggleMap}
+              title={ui.projects.toggleMap}
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                 <path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z" />
@@ -63,8 +64,8 @@ export default function ProjectsMap() {
             <button
               className={`projects__toggle-btn ${view === 'list' ? 'is-active' : ''}`}
               onClick={() => switchView('list')}
-              aria-label="Список"
-              title="Список"
+              aria-label={ui.projects.toggleList}
+              title={ui.projects.toggleList}
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                 <path d="M8 6h13M8 12h13M8 18h13" />
@@ -95,7 +96,7 @@ export default function ProjectsMap() {
             <img
               className="map-img"
               src={asset('Map.png')}
-              alt="Карта проектов"
+              alt={ui.projects.mapAlt}
               onError={(e) => e.currentTarget.parentElement.classList.add('map-stage--noimg')}
             />
             <div className="map-img-fallback">

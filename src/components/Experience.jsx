@@ -1,15 +1,16 @@
 import { motion } from 'framer-motion'
-import { experience, skills, education } from '../data/content.js'
+import { useT } from '../i18n/lang.jsx'
 import './Experience.css'
 
 const ease = [0.22, 1, 0.36, 1]
 
 export default function Experience() {
+  const { experience, skills, education, ui } = useT()
   return (
     <section id="experience" className="section experience">
       <div className="container">
-        <span className="eyebrow">Опыт</span>
-        <h2 className="experience__title display">Путь</h2>
+        <span className="eyebrow">{ui.experience.eyebrow}</span>
+        <h2 className="experience__title display">{ui.experience.title}</h2>
 
         <div className="experience__list">
           {experience.map((e, i) => (
@@ -33,7 +34,7 @@ export default function Experience() {
 
         <div className="experience__grid">
           <div className="skills">
-            <h3 className="experience__sub display">Навыки</h3>
+            <h3 className="experience__sub display">{ui.experience.skills}</h3>
             <div className="skills__cols">
               {skills.map((s) => (
                 <motion.div
@@ -56,7 +57,7 @@ export default function Experience() {
           </div>
 
           <div className="education">
-            <h3 className="experience__sub display">Образование</h3>
+            <h3 className="experience__sub display">{ui.experience.education}</h3>
             <div className="edu-card">
               <div className="edu-card__place display">{education.place}</div>
               <div className="edu-card__faculty">{education.faculty}</div>
